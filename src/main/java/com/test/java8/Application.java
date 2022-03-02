@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class Application {
@@ -19,15 +20,40 @@ public class Application {
 		// display the details of all employees
 		employeeList.stream().forEach((e-> System.out.println(e.toString())));
 
-
+        System.out.println("1.---------------male and female employees list--------------");
+        method1();
+        System.out.println("2.---------------Department wise employees list--------------");
+        method2();
+        System.out.println("3.---------------Department wise employees Gender list--------------");
+        method3();
 	}
 
     //Query 1 : How many male and female employees are there in the organization?
     public static void method1(){
 
         Map<String, Long> result =
-                         employeeList.stream() 
+                         employeeList.stream().collect(
+                                 Collectors.groupingBy(Employee::getGender, Collectors.counting())
+                         );
+        System.out.println(result);
+    }
 
+    public static void method2(){
+
+        Map<String, Long> deptWiseEmps =
+                employeeList.stream().collect(
+                Collectors.groupingBy(e->e.getDepartment(), Collectors.counting()));
+        System.out.println(deptWiseEmps);
+    }
+
+    public static void method3(){
+
+        Map<String, Map<String, Long>> result=
+                        employeeList.stream().collect(
+                                Collectors.groupingBy(Employee::getDepartment,
+                                Collectors.groupingBy(Employee::getGender, Collectors.counting()
+                        )));
+        System.out.println(result);
     }
 	static List<Employee>  initEmp(){
 		employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
