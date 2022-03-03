@@ -26,6 +26,8 @@ public class Application {
         method2();
         System.out.println("3.---------------Department wise employees Gender list--------------");
         method3();
+		System.out.println("4.---------------List of Departments--------------");
+		method4();
 	}
 
     //Query 1 : How many male and female employees are there in the organization?
@@ -55,6 +57,13 @@ public class Application {
                         )));
         System.out.println(result);
     }
+	public static void method4(){
+
+		employeeList.stream().map(Employee::getDepartment).distinct().forEach(System.out::println);
+	}
+
+
+
 	static List<Employee>  initEmp(){
 		employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
 		employeeList.add(new Employee(122, "Paul Niksui", 25, "Male", "Sales And Marketing", 2015, 13500.0));
