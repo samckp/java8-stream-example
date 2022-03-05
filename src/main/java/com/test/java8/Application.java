@@ -28,6 +28,8 @@ public class Application {
         method3();
 		System.out.println("4.---------------List of Departments--------------");
 		method4();
+		System.out.println("5------------average age of male and female employees--------------");
+		method5();
 	}
 
     //Query 1 : How many male and female employees are there in the organization?
@@ -62,6 +64,13 @@ public class Application {
 		employeeList.stream().map(Employee::getDepartment).distinct().forEach(System.out::println);
 	}
 
+	public static void method5(){
+
+		Map<String, Double> avgEmpGenderWise = employeeList.stream().
+				collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
+
+		System.out.println(avgEmpGenderWise);
+	}
 
 
 	static List<Employee>  initEmp(){
