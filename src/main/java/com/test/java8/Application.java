@@ -30,6 +30,9 @@ public class Application {
 		method4();
 		System.out.println("5------------average age of male and female employees--------------");
 		method5();
+
+		System.out.println("6------------Employee joined after 2017--------------");
+		method6();
 	}
 
     //Query 1 : How many male and female employees are there in the organization?
@@ -72,6 +75,10 @@ public class Application {
 		System.out.println(avgEmpGenderWise);
 	}
 
+	public static void method6(){
+
+		employeeList.stream().filter(employee -> employee.getYearOfJoining() > 2017).collect(Collectors.toList()).forEach( e->e.getName());
+	}
 
 	static List<Employee>  initEmp(){
 		employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
