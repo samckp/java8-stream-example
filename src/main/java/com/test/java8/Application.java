@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,6 +34,10 @@ public class Application {
 
 		System.out.println("6------------Employee joined after 2017--------------");
 		method6();
+
+		System.out.println("7------------Employee Sorted by Name--------------");
+		method7();
+
 	}
 
     //Query 1 : How many male and female employees are there in the organization?
@@ -77,9 +82,15 @@ public class Application {
 
 	public static void method6(){
 
-		employeeList.stream().filter(employee -> employee.getYearOfJoining() > 2017).collect(Collectors.toList()).forEach( e->e.getName());
+		employeeList.stream().filter(employee -> employee.getYearOfJoining() > 2011).map(Employee::getName).forEach(System.out::println);
+
+		System.out.println(employeeList.stream().filter(employee -> employee.getYearOfJoining() > 2016).collect(Collectors.toList()));
 	}
 
+	public static void method7(){
+
+		employeeList.stream().sorted(Comparator.comparing(Employee::getName)).forEach(System.out::println);
+	}
 	static List<Employee>  initEmp(){
 		employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
 		employeeList.add(new Employee(122, "Paul Niksui", 25, "Male", "Sales And Marketing", 2015, 13500.0));
