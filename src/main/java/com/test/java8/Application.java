@@ -29,13 +29,13 @@ public class Application {
         method3();
 		System.out.println("4.---------------List of Departments--------------");
 		method4();
-		System.out.println("5------------average age of male and female employees--------------");
+		System.out.println("5.------------average age of male and female employees--------------");
 		method5();
 
-		System.out.println("6------------Employee joined after 2017--------------");
+		System.out.println("6.------------Employee joined after 2017--------------");
 		method6();
 
-		System.out.println("7------------Employee Sorted by Name--------------");
+		System.out.println("7.------------Employee Sorted by Name--------------");
 		method7();
 
 	}
