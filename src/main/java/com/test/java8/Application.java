@@ -37,6 +37,11 @@ public class Application {
 
 		System.out.println("7.------------Employee Sorted by Name--------------");
 		method7();
+		
+		
+		System.out.println("8.------------Dept wise Max Salary--------------");
+		method8();
+		
 
 	}
 
@@ -91,6 +96,18 @@ public class Application {
 
 		employeeList.stream().sorted(Comparator.comparing(Employee::getName)).forEach(System.out::println);
 	}
+	
+	//Display Depat wise max salary 
+	public static void method8(){
+		
+		Comparator<Employee> compareBySalary = Comparator.comparing(Employee::getSalary);
+
+        	Map<String, Optional<Employee>> result = employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+              	  Collectors.reducing(BinaryOperator.maxBy(compareBySalary))));
+
+        	System.out.println(result);
+	}
+	
 	static List<Employee>  initEmp(){
 		employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
 		employeeList.add(new Employee(122, "Paul Niksui", 25, "Male", "Sales And Marketing", 2015, 13500.0));
