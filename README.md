@@ -1,1 +1,1 @@
-# java8-stream-example
+# java8-stream-examples
